@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farmer Friend</title>
+    <link rel="shortcut icon" href="./logo"/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: #575050; /* pale blue */  
+        }
+        #popup {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0,0,0,0.4);
+            }
+        .custom-font {
+            font-family: 'Signika', sans-serif; 
+        }
+        .popup-content {
+            font-family: 'Signika', sans-serif;
+            font-size: 20px;
+            background-color: #333333;
+            border-radius: 10px;
+            background-size: cover;
+            color: aliceblue;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+        }
+        @-webkit-keyframes animatetop {
+            from {top:-300px; opacity:0} 
+            to {top:0; opacity:1}
+        }
+
+        @keyframes animatetop {
+            from {top:-300px; opacity:0}
+            to {top:0; opacity:1}
+        }  
+
+        #close-popup {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        #close-popup:hover,
+        #close-popup:focus {
+            color: black;
+            text-decoration: navajowhite;
+            cursor: pointer;
+        }
+        #preview-img {
+            display: block;
+            margin: auto;
+            border: #aaa;
+            border-radius: 20%;
+            margin-bottom: 10px;
+        }
+        #show-result {
+            margin-top: 10px;
+            max-width: 25%;
+            display: block;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            display: none;
+        }
+        .center-button{
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-item{
+            margin-right: 30px;
+        }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-md navbar-dark nav-color fixed-top" style="background-color: #252525;">
+        <nav class="container-fluid flex-wrap flex-md-nowrap">
+            <a class="navbar-brand p-1 me-2" href="#Home">
+                <img src="./img/logo" width="50" height="50" class="d-inline-block align-text-center" alt="">
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse pt-2 py-md-0" id="bdNavbar">
+                <ul class="navbar-nav flex-grow flex-wrap bd-navbar-nav">
+                    <li class="nav-item col-6 col-md-auto"><a class="nav-link p-2" href="#Home">Home</a></li>
+                    <li class="nav-item col-6 col-md-auto"><a class="nav-link p-2" href="#Features">Features</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Supported Crops
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item custom-font"  href="#">Apple</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Bell Pepper</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Blueberry</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Cherry</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Corn(Maize)</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Grape</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Orange</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Peach</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Potato</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Raspberry</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Rice</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Soybean</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Squash</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Strawberry</a></li>
+                          <li><a class="dropdown-item custom-font"  href="#">Tomato</a></li>
+                        </ul>
+                      </li>
+                    <li class="nav-item col-6 col-md-auto"><a class="nav-link p-2" href="#About">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+
+      
+      <div id="Home" class="pricing-header p-3 pb-md-4 mx-auto text-center" style="color: aliceblue;">
+        <a>        
+            <br>
+            <br></br>
+            </br>
+        </a>
+        <h1 class="mb-3 custom-font">Farmer Friend <i class="fas fa-search"></i></h1>
+        <h1 class="mb-3 custom-font">Get Instant &amp; Accurate Crop Disease Detection with Our Famer Friend App</h1>
+      </div>
+      
+      <div class="container" style="align-items: center;justify-content: center;">
+        <main>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center" style="display: flex;align-items: center;justify-content: center;color: #252525;">
+              <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                  <div class="card-header py-3" >
+                    <h4 class="my-0 fw-normal custom-font">Upload Your Image</h4>
+                  </div>
+                  <div class="card-body">
+                    <form class="center" action="https://agentcrop.azurewebsites.net/api/predict" method = "POST" enctype = "multipart/form-data" id="api-form">
+                        <div class="choose-box" style="color: #212529;">
+                        <input type="file" class="w-100 btn btn-lg btn-outline-secondary custom-font" name="files" multiple required />
+                        <div class="pt-2 custom-font">
+							<p>Note: Maximum Total file size limit is 50 MB. Only PNG, JPG/JPEG files are allowed. Your Uploaded Images automatically get deleted after 1 hour.</p>
+							<p><a href="#crops-list" style="color: rgb(7, 6, 6);">List of currently supported crops</a></p>
+						</div>
+                        <input type="submit" class="w-100 btn btn-lg btn-outline-secondary custom-font" value="Predict" />
+                        </div>  
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </main>
+    </div>
+    <div class="img-box">
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <img id="preview-img" style="border: #aaa; border-radius: 5%;">
+    </div>
+    <div class="center-button">    
+        <button id="show-result" class="w-100 btn btn-lg btn-outline-secondary custom-font">Show Result</button>
+    </div>
+    </div>
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <div id="show-data">
+                </div>
+                <button id="close-popup" class="w-100 btn btn-lg btn-outline-secondary custom-font" style="color: azure;">Close</button>
+            </div>
+        </div>
+            <p class="display-6 text-center mb-4 custom-font" style="color: aliceblue;">Our Model currently supports the following Crops and their diseases:</p >
+            
+            <div id="crops-list" class="container custom-bg-color rounded custom-font" style="padding-top:12px; padding-bottom:12px;background-color: #333333;" >
+                <nav>
+                    <div class="nav nav-tabs crops-list-tab" style="border: none; padding-bottom: 12px;color: rgb(255, 255, 255);background-color: #333333;" id="nav-tab" role="tablist">
+                        <button class="nav-link crops-list-tab rounded active " id="nav-apple-tab" data-bs-toggle="tab" data-bs-target="#nav-apple" type="button" role="tab" aria-controls="nav-apple" aria-selected="true" >Apple</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-bell-pepper-tab" data-bs-toggle="tab" data-bs-target="#nav-bell-pepper" type="button" role="tab" aria-controls="nav-bell-pepper" aria-selected="false">Bell Pepper</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-blueberry-tab" data-bs-toggle="tab" data-bs-target="#nav-blueberry" type="button" role="tab" aria-controls="nav-blueberry" aria-selected="false">Blueberry</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-cherry-tab" data-bs-toggle="tab" data-bs-target="#nav-cherry" type="button" role="tab" aria-controls="nav-cherry" aria-selected="false">Cherry</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-corn-maize-tab" data-bs-toggle="tab" data-bs-target="#nav-corn-maize" type="button" role="tab" aria-controls="nav-corn-maize" aria-selected="false">Corn (Maize)</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-grape-tab" data-bs-toggle="tab" data-bs-target="#nav-grape" type="button" role="tab" aria-controls="nav-grape" aria-selected="false">Grape</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-orange-tab" data-bs-toggle="tab" data-bs-target="#nav-orange" type="button" role="tab" aria-controls="nav-orange" aria-selected="false">Orange</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-peach-tab" data-bs-toggle="tab" data-bs-target="#nav-peach" type="button" role="tab" aria-controls="nav-peach" aria-selected="false">Peach</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-potato-tab" data-bs-toggle="tab" data-bs-target="#nav-potato" type="button" role="tab" aria-controls="nav-potato" aria-selected="false">Potato</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-raspberry-tab" data-bs-toggle="tab" data-bs-target="#nav-raspberry" type="button" role="tab" aria-controls="nav-raspberry" aria-selected="false">Raspberry</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-rice-tab" data-bs-toggle="tab" data-bs-target="#nav-rice" type="button" role="tab" aria-controls="nav-rice" aria-selected="false">Rice</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-soybean-tab" data-bs-toggle="tab" data-bs-target="#nav-soybean" type="button" role="tab" aria-controls="nav-soybean" aria-selected="false">Soybean</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-squash-tab" data-bs-toggle="tab" data-bs-target="#nav-squash" type="button" role="tab" aria-controls="nav-squash" aria-selected="false">Squash</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-strawberry-tab" data-bs-toggle="tab" data-bs-target="#nav-strawberry" type="button" role="tab" aria-controls="nav-strawberry" aria-selected="false">Strawberry</button>
+                        <button class="nav-link crops-list-tab rounded" id="nav-tomato-tab" data-bs-toggle="tab" data-bs-target="#nav-tomato" type="button" role="tab" aria-controls="nav-tomato" aria-selected="false">Tomato</button>
+                    </div>
+                </nav>
+                <div class="tab-content custom-bg-color-2 rounded" style="padding-bottom: 5px; padding-top: 17px;color: aliceblue;background-color: #464646;" id="nav-tabContent">
+                    <div class="tab-pane fade active show" id="nav-apple" role="tabpanel" aria-labelledby="nav-apple-tab">
+                        <ul>
+                            <li>Apple Scab</li>
+                            <li>Black Rot</li>
+                            <li>Cedar Rust</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-bell-pepper" role="tabpanel" aria-labelledby="nav-bell-pepper-tab">
+                        <ul>
+                            <li>Bacterial Spot</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-blueberry" role="tabpanel" aria-labelledby="nav-blueberry-tab">
+                        <ul>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-cherry" role="tabpanel" aria-labelledby="nav-cherry-tab">
+                        <ul>
+                            <li>Powdery Mildew</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-corn-maize" role="tabpanel" aria-labelledby="nav-corn-maize-tab">
+                        <ul>
+                            <li>Grey Leaf Spot</li>
+                            <li>Common Rust of Maize</li>
+                            <li>Northern Leaf Blight</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-grape" role="tabpanel" aria-labelledby="nav-grape-tab">
+                        <ul>
+                            <li>Black Rot</li>
+                            <li>Black Measles (Esca)</li>
+                            <li>Leaf Blight (Isariopsis Leaf Spot)</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-orange" role="tabpanel" aria-labelledby="nav-orange-tab">
+                        <ul>
+                            <li>Huanglongbing (Citrus Greening)</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-peach" role="tabpanel" aria-labelledby="nav-peach-tab">
+                        <ul>
+                            <li>Bacterial spot</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-potato" role="tabpanel" aria-labelledby="nav-potato-tab">
+                        <ul>
+                            <li>Early Blight</li>
+                            <li>Late Blight</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-raspberry" role="tabpanel" aria-labelledby="nav-raspberry-tab">
+                        <ul>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-rice" role="tabpanel" aria-labelledby="nav-rice-tab">
+                        <ul>
+                            <li>Brown Spot</li>
+                            <li>Hispa</li>
+                            <li>Leaf Blast</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-soybean" role="tabpanel" aria-labelledby="nav-soybean-tab">
+                        <ul>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-squash" role="tabpanel" aria-labelledby="nav-squash-tab">
+                        <ul>
+                            <li>Powdery Mildew</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-strawberry" role="tabpanel" aria-labelledby="nav-strawberry-tab">
+                        <ul>
+                            <li>Leaf Scorch</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="nav-tomato" role="tabpanel" aria-labelledby="nav-tomato-tab">
+                        <ul>
+                            <li>Bacterial Spot</li>
+                            <li>Early Blight</li>
+                            <li>Late Blight</li>
+                            <li>Leaf Mold</li>
+                            <li>Septoria Leaf Spot</li>
+                            <li>Spider Mites (Two-spotted Spider Mite)</li>
+                            <li>Target Spot</li>
+                            <li>Yellow Leaf Curl Virus</li>
+                            <li>Mosaic Virus</li>
+                            <li>Healthy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+          <div id="Features" class="features" style="color: aliceblue;">
+            <div class="container px-4 px-md-3 pt-5">
+                <div class="row align-items-lg-center align-items-md-center">
+                    <div class="col-9 mx-auto col-md-6 col-lg-5">
+                        <img src="./img/neural-brain.png" class="img-fluid" alt="Features" width="400" height="400">
+                    </div>
+                    <div class="col pt-4 custom-font"> 
+                        <h2>Features</h2>
+                        <p>Farmer Friend uses Deep Learning Algorithms to predict the diseases in your crops. It implements various deep learning libraries to build Robust and Central Neural Network which can provide you Fast and Accurate Results.</p>
+                        <h4>Technology Stack of the Agent Crop:</h4>
+                        <ul>
+                            <li>Python</li>
+                            <li>HTML, CSS, JavaScript</li>
+                            <li>Bootstrap</li>
+                            <li>Flask</li>
+                            <li>TensorFlow, Keras</li>
+                            <li>Pandas, Numpy, Scipy</li>
+                            <li>To be Continued...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+          <div id="About">
+            <div class="container pt-5 custom-font" style="color: aliceblue;">
+                <h2>About</h2>
+                <p>Farmer Friend is an Open Source Project created with intention to help detect Crops Diseases and suggest possible cure for them.</p>
+                <p>You can find the source code for the Farmer Friend on the GitHub:</p>
+                <a href="https://github.com/" target="_blank" class="btn btn-light">Farmer Friend GitHub</a>
+            </div>
+        </div>
+        <br></br>
+        <footer class="nav-color mt-auto text-center footer py-3 mb-0" style="background-color: #252525;">
+            <div class="container" style="color: aliceblue;">
+                <p class="mb-0 custom-font">Made With ❤️ In INDIA</p>
+            </div>
+        </footer>
+        <script>
+            const fileInput = document.querySelector("input[type='file']");
+            const previewImg = document.querySelector("#preview-img");
+
+            fileInput.addEventListener("change", function() {
+                const file = this.files[0];
+                const reader = new FileReader();
+            reader.onload = function() {
+                previewImg.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+            });
+            document.getElementById("popup").style.display = "none";
+
+            // Function to work with your data.
+            function workWithData(data) {
+                document.getElementById("popup").style.display = "block";
+                document.getElementById("show-result").style.display = "block";
+                // Here you can simply show data using iterating through it or you can do whatever you want with it.
+                document.getElementById('show-data').innerHTML = "";
+                for (let imageName in data) {
+                    document.getElementById('show-data').innerHTML += "<h3>" + imageName + ": </h3>";
+                    for (let detail in data[imageName]) {
+                        document.getElementById('show-data').innerHTML += "<p><strong>" + detail.replace(detail[0], detail[0].toUpperCase()) + ": </strong>" + data[imageName][detail] + "</p>";
+                    }
+                }
+                document.getElementById("close-popup").onclick = function() {
+                    document.getElementById("popup").style.display = "none";
+                }
+                document.getElementById("show-result").addEventListener("click", function(){
+                    document.getElementById("popup").style.display = "block";
+                });
+            }
+
+            // Function to handle submit event.
+            function handleFormSubmit(event) {
+                
+                // Prevent default behavior of submit event.
+                event.preventDefault();
+
+                // Get the form element and url.
+                const form = event.currentTarget;
+                const url = form.action;
+                
+                // Define formData object to store the images and later send it to API.
+                const formData = new FormData();
+
+                // Find file input element.
+                const photos = document.querySelector('input[type="file"][multiple]');
+                
+                // Iterate through file input element and save images to the formData object.
+                for (let i = 0; i < photos.files.length; i++) {
+                    photo = formData.append('files', photos.files[i]);
+                }
+
+                // Below we use fetch to send formData to the API.
+                fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    origin: "*"
+                })
+                .then(
+                    // After that we get response and work with it.
+                    function(response) {
+
+                        // If response's ok property is false, then shows error and return.
+                        if (!response.ok) {
+                            console.log('Looks like there was a problem. Status Code: ' + response.status);
+                            return;
+                        }
+
+                        // Now we parse response to the json and then get the data object.
+                        response.json().then(function(data) {
+
+                            // We will pass data object to external function to work with it.
+                            workWithData(data);
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    
+                    // If any error occurs the it will show it.
+                    console.log('Fetch Error :-S', err);
+                });
+            }
+
+            // Get the form element using it's id.
+            const apiForm = document.getElementById("api-form");
+
+            // Add event listener on submit event.
+            apiForm.addEventListener("submit", handleFormSubmit);
+        </script>
+    <script src="https://kit.fontawesome.com/your-kit-code.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+  
+</html>

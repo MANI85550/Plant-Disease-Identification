@@ -1,0 +1,35 @@
+body , html{
+    height: 100%;
+    overflow: hidden;
+}
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.bg-image{
+    background-image: url(./plant.jpg);
+    height: 100%;
+}
+.bg-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
+    width: 45%;
+    padding: 40px 0;
+    text-align: center;
+    border-top-left-radius: 70px;
+    border-bottom-right-radius: 70px;
+    background-color: rgba(0,0,0,0.3);
+    color: #fff;
+    font-weight: bold;
+    border: 10px inset #fff;
+}
+form{
+    position: absolute;
+    width: 45%;
+    text-align: center;
+}
